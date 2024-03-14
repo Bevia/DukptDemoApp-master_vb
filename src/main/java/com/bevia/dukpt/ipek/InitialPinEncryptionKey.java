@@ -43,11 +43,9 @@ public class InitialPinEncryptionKey {
                 new BinaryKeyComponent(component1),
                 new BinaryKeyComponent(component2));
 
-        System.out.println("BDK: -----bdk------->   " + bdk);
-
         String bdk24Byte = bdk + bdk.substring(0, 16);
 
-        System.out.println("BDK: -----bdk24Byte------->   " + bdk24Byte);
+        printLogs(bdk, bdk24Byte);
 
         /*
 
@@ -77,6 +75,11 @@ public class InitialPinEncryptionKey {
         System.arraycopy(ipekRightHalfFinal, 0, ipek, 8, 8);
 
         return ipek;
+    }
+
+    private static void printLogs(String bdk, String bdk24Byte) {
+        System.out.println("BDK: -----bdk------->   " + bdk);
+        System.out.println("BDK: -----bdk24Byte------->   " + bdk24Byte);
     }
 
     public List<HexKeyComponent> getKeyComponents() {
