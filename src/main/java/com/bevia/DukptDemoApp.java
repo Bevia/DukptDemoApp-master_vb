@@ -31,6 +31,10 @@ public class DukptDemoApp implements CommandLineRunner
         System.out.println("Generated Swipe Data: " + swipe);
         System.out.println("Data Encryption Key: " + dek);
         GenericTerminalParser parser = new GenericTerminalParser(swipe);
+        LoggingData(parser);
+    }
+
+    private static void LoggingData(GenericTerminalParser parser) {
         System.out.println("Encrypted Track Two Data: "+ parser.getTrackTwoEncrypted());
         System.out.println("BDK: -----VB------->   " + createBaseDerivationKey());
     }
