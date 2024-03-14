@@ -17,17 +17,15 @@ public class DukptImpl {
     public static final String TRIPLE_DES_KEY_ALGORITHM = "DESede";
     public static final String DES_KEY_ALGORITHM = "DES";
     public static final String INITIALIZATION_VECTOR = "0000000000000000";
-    private static byte[] DEK_XORMASK = Hex.decode("0000000000FF00000000000000FF0000");
+    private static final byte[] DEK_XORMASK = Hex.decode("0000000000FF00000000000000FF0000");
 
-    private byte[][] keyComponents;
-    private byte[] ipekbytes;
-    private String ksn;
-    private byte[] ksnbytes;
+    private final byte[] ipekbytes;
+    private final byte[] ksnbytes;
 
     public DukptImpl(InitialPinEncryptionKey ipek) {
-        keyComponents = extractKeyComponents(ipek);
+        byte[][] keyComponents = extractKeyComponents(ipek);
         ipekbytes = assembleIpekFromKeyComponents(keyComponents);
-        ksn = ipek.getKsn();
+        String ksn = ipek.getKsn();
         ksnbytes = Hex.decode(ksn);
     }
 

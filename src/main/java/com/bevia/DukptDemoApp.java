@@ -40,7 +40,7 @@ public class DukptDemoApp implements CommandLineRunner
     }
 
     private static BaseDerivationKey createBaseDerivationKey() {
-        List keyComponents = new ArrayList<HexKeyComponent>();
+        List<HexKeyComponent> keyComponents = new ArrayList<>();
         keyComponents.add(new HexKeyComponent("B3D97485261218FCA6B7B6E1AE55CDB0", "EB0DAE"));
         keyComponents.add(new HexKeyComponent("E097DC6ECD542E5E0D550AA6310ACA23", "477BE4"));
         keyComponents.add(new HexKeyComponent("23E54BBA6E6ECB69C48EAAC4EFFAE508", "6F1E19"));
