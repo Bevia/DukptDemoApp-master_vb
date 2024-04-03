@@ -14,27 +14,28 @@ import java.security.Security;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @SpringBootApplication
 public class DukptDemoApp implements CommandLineRunner
 {
 
     public static final String KSN = "FFFF1000010000000007";
+    private static String swipe;
+    private static String dek;
 
     @Override
     public void run(String... args) {
         BaseDerivationKey bdk = createBaseDerivationKey();
         InitialPinEncryptionKey ipek = new InitialPinEncryptionKey(bdk, KSN);
         GenericTerminalSwipeDataGenerator terminalSwipeDataGenerator = new GenericTerminalSwipeDataGenerator(ipek);
-        String swipe = terminalSwipeDataGenerator.generateSwipe();
-        String dek = terminalSwipeDataGenerator.getDataEncryptionKey();
-        System.out.println("Generated Swipe Data: " + swipe);
-        System.out.println("Data Encryption Key: " + dek);
+        swipe = terminalSwipeDataGenerator.generateSwipe();
+        dek = terminalSwipeDataGenerator.getDataEncryptionKey();
         GenericTerminalParser parser = new GenericTerminalParser(swipe);
         LoggingData(parser);
     }
 
     private static void LoggingData(GenericTerminalParser parser) {
+        System.out.println("Generated Swipe Data: " + swipe);
+        System.out.println("Data Encryption Key: " + dek);
         System.out.println("Encrypted Track Two Data: "+ parser.getTrackTwoEncrypted());
         System.out.println("BDK: -----VB------->   " + createBaseDerivationKey());
     }
@@ -56,6 +57,4 @@ public class DukptDemoApp implements CommandLineRunner
             Security.addProvider(new BouncyCastleProvider());
         }
     }
-
-
 }
